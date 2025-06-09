@@ -1,0 +1,612 @@
+[
+  {
+    "name": "365 JUICES BAR",
+    "address": "02-253B | Marina square",
+    "type": "TakeAway",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "A_Live House By Relax",
+    "address": "01-01 to 03 | Marina square",
+    "type": "Restaurant",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "ASTONS Steak & Salad",
+    "address": "03-145/146 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Betsubara",
+    "address": "02-300 | Marina square",
+    "type": "Restaurant",
+    "category": "Dessert",
+    "location": "Marina square"
+  },
+  {
+    "name": "Beyond Pancakes",
+    "address": "03-131A | Marina square",
+    "type": "Restaurant",
+    "category": "Dessert",
+    "location": "Marina square"
+  },
+  {
+    "name": "BHC Chicken",
+    "address": "02-332A & #02-332F | Marina square",
+    "type": "Restaurant",
+    "category": "Korean",
+    "location": "Marina square"
+  },
+  {
+    "name": "Bone Broth Vermicelli by Xian Tai Ye Gu Tang Mixian",
+    "address": "#02-230A/231A | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Burger King @ The Dining Edition",
+    "address": "02-105 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Cellarbration",
+    "address": "03-216A | Marina square",
+    "type": "AlocholBar",
+    "category": "Alcohol",
+    "location": "Marina square"
+  },
+  {
+    "name": "CHIC-A-BOO Chicken Specialty",
+    "address": "03-147/148 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "CHICHA San Chen",
+    "address": "02-208 | Marina square",
+    "type": "TakeAway",
+    "category": "BubbleTea",
+    "location": "Marina square"
+  },
+  {
+    "name": "Coco Veggie Nyonya Cuisine",
+    "address": "03-122 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "COLLIN'S",
+    "address": "01-204/205 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Crave",
+    "address": "02-233 | Marina square",
+    "type": "Restaurant",
+    "category": "Malay",
+    "location": "Marina square"
+  },
+  {
+    "name": "dal.komm COFFEE",
+    "address": "#02-272/273 & 278/279 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "Dian Xiao Er",
+    "address": "02-200 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Encik Tan",
+    "address": "02-275 | Marina square",
+    "type": "Restaurant",
+    "category": "Malay",
+    "location": "Marina square"
+  },
+  {
+    "name": "Popeyes Famous Louisiana Chicken",
+    "address": "02-275 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Good Chance Cafe",
+    "address": "#03-132/133/133K | Marina square",
+    "type": "CoffeeShop",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Gourmet Paradise @ The Dining Edition",
+    "address": "02-180 to 183 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Gyu-Kaku Japanese BBQ Restaurant @ The Dining Edition",
+    "address": "02-106 | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Haidilao Hot Pot (Karen Blacklisted)",
+    "address": "01-19 to 25 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Han's",
+    "address": "02-206 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Hannaembi",
+    "address": "#02-105B | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Hong Kong Zhai Dim Sum",
+    "address": "02-234/235/236 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Hot Pot Valley",
+    "address": "02-102/102A | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Jia He Xing",
+    "address": "03-128 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Kai Garden",
+    "address": "03-128A/128B | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Kanada-Ya",
+    "address": "02-203/204 | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Kei Kaisendon",
+    "address": "02-226A/B | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "KEITAKU",
+    "address": "02-301 | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Kenny Rogers Roasters",
+    "address": "02-130A/104 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Killiney",
+    "address": "#B1-16 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Kith Cafe",
+    "address": "01-10 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Lao Huo Tang",
+    "address": "02-202 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Luckin Coffee",
+    "address": "02-153 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "Made's A Cafe",
+    "address": "B1-18 | Marina square",
+    "type": "TakeAway",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "MAKAN MAKAN By D'PENYETZ GROUP",
+    "address": "02-201 | Marina square",
+    "type": "Restaurant",
+    "category": "Malay",
+    "location": "Marina square"
+  },
+  {
+    "name": "Malts",
+    "address": "01-07/08 | Marina square",
+    "type": "AlocoholBar",
+    "category": "Alocohol",
+    "location": "Marina square"
+  },
+  {
+    "name": "McDonald's",
+    "address": "02-156/157/166 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "OH MY COW!",
+    "address": "02-280 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "OJBK- Oyster Joint, Bar and Kitchen",
+    "address": "01-06 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Olive Vine",
+    "address": "B1-17 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Paris Baguette",
+    "address": "#02-152&152K | Marina square",
+    "type": "CoffeeShop",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Pizza Hut",
+    "address": "03-211 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "PUTIEN",
+    "address": "02-205 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Rolling Rice @ The Dining Edition",
+    "address": "02-105A | Marina square",
+    "type": "TakeAway",
+    "category": "Korean",
+    "location": "Marina square"
+  },
+  {
+    "name": "Saizeriya",
+    "address": "02-207 | Marina square",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Seoul Garden",
+    "address": "03-210 | Marina square",
+    "type": "Restaurant",
+    "category": "Korean",
+    "location": "Marina square"
+  },
+  {
+    "name": "Singapura Nanyang Coffee",
+    "address": "02-220A to 222A | Marina square",
+    "type": "CoffeeShop",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "SOFRA Turkish Cafe & Restaurant",
+    "address": "03-129A | Marina square",
+    "type": "Restaurant",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "Starbucks Coffee",
+    "address": "03-217/218 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "Suki-Ya @ The Dining Edition (Shabu Shabu Hotpot)",
+    "address": "02-183B/183C | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "SUKIYA",
+    "address": "02-183A | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Sushi-GO",
+    "address": "#02-277 | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Taliwang Restaurant",
+    "address": "#03-131 | Marina square",
+    "type": "Restaurant",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "TANAMERA COFFEE",
+    "address": "02-192 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "Tang Tea House",
+    "address": "#03-212/213/214 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Tenkaichi Japanese BBQ",
+    "address": "03-129 | Marina square",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Marina square"
+  },
+  {
+    "name": "The Tree Cafe",
+    "address": "02-100A/100B | Marina square",
+    "type": "Restaurant",
+    "category": "Others",
+    "location": "Marina square"
+  },
+  {
+    "name": "The Vermilion House",
+    "address": "02-03/04 | Marina square",
+    "type": "Restaurant",
+    "category": "Mediterranean",
+    "location": "Marina square"
+  },
+  {
+    "name": "Victoria Bakery & Cafe",
+    "address": "02-302/303 | Marina square",
+    "type": "CoffeeShop",
+    "category": "Western",
+    "location": "Marina square"
+  },
+  {
+    "name": "Ya Kun Kaya Toast",
+    "address": "02-207A | Marina square",
+    "type": "CoffeeShop",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Yechun Xiao Jiang Nan @ The Dining Edition",
+    "address": "02-106A/B | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Yi Zun Noodle",
+    "address": "02-103 | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "ZUYA VEGETARIAN",
+    "address": "02-223-225A | Marina square",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Marina square"
+  },
+  {
+    "name": "Wo Wo Dian",
+    "address": "B1-13/14/15 | Raffles City",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Homm Dessert",
+    "address": "B1-12 | Raffles City",
+    "type": "Restaurant",
+    "category": "Dessert",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Casa Vostra",
+    "address": "#01-49/50/51 | Raffles City",
+    "type": "Restaurant",
+    "category": "Italian",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Omote",
+    "address": "B1-44C | Raffles City",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Surrey Hills Grocer",
+    "address": "#03-42 | Raffles City",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Mensho Tokyo",
+    "address": "#03-43 | Raffles City",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "MoVida",
+    "address": "#03-43 | Raffles City",
+    "type": "Restaurant",
+    "category": "Spanish",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Go Ba",
+    "address": "B1-169 | Raffles City",
+    "type": "TakeAway",
+    "category": "BubbleTea",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Gyukatsu Kyoto Katsugyu",
+    "address": "B1-64/64 | Raffles City",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Cinnabon",
+    "address": "B1-60 | Raffles City",
+    "type": "TakeAway",
+    "category": "Dessert",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Kenangan Coffee",
+    "address": "B1-K10 | Raffles City",
+    "type": "TakeAway",
+    "category": "Coffee",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Tori Sanwa",
+    "address": "B1-75 | Raffles City",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Brotherbird Bakehouse",
+    "address": "B1-67 | Raffles City",
+    "type": "TakeAway",
+    "category": "Bakery",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Cafe & Meal Muji",
+    "address": "#02-20/22 | Raffles City",
+    "type": "Restaurant",
+    "category": "Japanese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Chagee",
+    "address": "01-15 | Raffles City",
+    "type": "TakeAway",
+    "category": "BubbleTea",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Din Tai Fung",
+    "address": "#02-18 | Raffles City",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Poulet",
+    "address": "B1-65/66 | Raffles City",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Putien",
+    "address": "#02-18 | Raffles City",
+    "type": "Restaurant",
+    "category": "Chinese",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Tag Espresso",
+    "address": "B1-49 | Raffles City",
+    "type": "TakeAway",
+    "category": "Coffee",
+    "location": "Raffles City"
+  },
+  {
+    "name": "Blue Bottle Coffee",
+    "address": "01-01 | Raffles City",
+    "type": "TakeAway",
+    "category": "Coffee",
+    "location": "Raffles City"
+  },
+  {
+    "name": "XW Chargrill Western",
+    "address": "B1-44B | Raffles City",
+    "type": "Restaurant",
+    "category": "Western",
+    "location": "Raffles City"
+  }
+]
+

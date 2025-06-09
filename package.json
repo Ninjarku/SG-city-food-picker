@@ -1,0 +1,16 @@
+{
+  "name": "sg-food-picker",
+  "version": "1.0.0",
+  "description": "Simple web app to pick and add food locations by area in Singapore",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cheerio": "^1.1.0",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
