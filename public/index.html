@@ -98,6 +98,31 @@
       }
     }
 
+    function recommendRandom() {
+      const type = document.getElementById('typeSelect').value;
+      const category = document.getElementById('categorySelect').value;
+      const place = document.getElementById('placeSelect').value;
+    
+      if (!type || !category || !place) {
+        alert("Please select a location, type, and category first.");
+        return;
+      }
+    
+      fetch('/api/locations/' + encodeURIComponent(place))
+        .then(res => res.json())
+        .then(data => {
+          const filtered = data.filter(item => item.type === type && item.category === category);
+          if (filtered.length === 0) {
+            alert("No matching options found.");
+            return;
+          }
+    
+          const pick = filtered[Math.floor(Math.random() * filtered.length)];
+          alert(`🎯 You should try: ${pick.name}\n📍 ${pick.address}`);
+        });
+    }
+
+    
     function showMode(mode) {
       document.getElementById('viewMode').classList.toggle('hidden', mode !== 'view');
       document.getElementById('addMode').classList.toggle('hidden', mode !== 'add');
