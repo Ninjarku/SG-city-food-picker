@@ -6,12 +6,14 @@
   <title>SG City Food Location Picker</title>
   <style>
     body { font-family: sans-serif; padding: 2rem; max-width: 700px; margin: auto; }
-    label, select, input, button { display: block; margin-top: 1rem; }
+    label, select, input, button { margin-top: 1rem; }
     .card { border: 1px solid #ccc; padding: 1rem; margin-top: 1rem; border-radius: 8px; display: flex; gap: 1rem; align-items: center; }
     .card img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
     .nav-buttons { margin-bottom: 1rem; }
     .nav-buttons button { margin-right: 1rem; }
     .hidden { display: none; }
+    .filter-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .filter-row label, .filter-row select { margin-top: 0; }
   </style>
 </head>
 <body>
@@ -23,38 +25,40 @@
   </div>
 
   <div id="viewMode">
-    <label for="placeSelect">Select a Location</label>
-    <select id="placeSelect"></select>
+    <div class="filter-row">
+      <label for="placeSelect">Location</label>
+      <select id="placeSelect"></select>
 
-    <label for="typeSelect">Filter by Type</label>
-    <select id="typeSelect">
-      <option value="">All</option>
-      <option value="Restaurant">Restaurant</option>
-      <option value="CoffeeShop">CoffeeShop</option>
-      <option value="TakeAway">TakeAway</option>
-      <option value="AlcoholBar">AlcoholBar</option>
-    </select>
+      <label for="typeSelect">Type</label>
+      <select id="typeSelect">
+        <option value="">All</option>
+        <option value="Restaurant">Restaurant</option>
+        <option value="CoffeeShop">CoffeeShop</option>
+        <option value="TakeAway">TakeAway</option>
+        <option value="AlcoholBar">AlcoholBar</option>
+      </select>
 
-    <label for="categorySelect">Filter by Category</label>
-    <select id="categorySelect">
-      <option value="">All</option>
-      <option value="Western">Western</option>
-      <option value="Chinese">Chinese</option>
-      <option value="Japanese">Japanese</option>
-      <option value="Thai">Thai</option>
-      <option value="Korean">Korean</option>
-      <option value="Malay">Malay</option>
-      <option value="Dessert">Dessert</option>
-      <option value="Alcohol">Alcohol</option>
-      <option value="BubbleTea">BubbleTea</option>
-      <option value="Mediterranean">Mediterranean</option>
-      <option value="Others">Others</option>
-    </select>
+      <label for="categorySelect">Category</label>
+      <select id="categorySelect">
+        <option value="">All</option>
+        <option value="Western">Western</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Thai">Thai</option>
+        <option value="Korean">Korean</option>
+        <option value="Malay">Malay</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Alcohol">Alcohol</option>
+        <option value="BubbleTea">BubbleTea</option>
+        <option value="Mediterranean">Mediterranean</option>
+        <option value="Others">Others</option>
+      </select>
+
+      <button type="button" onclick="recommendRandom()">🎲 Recommend</button>
+    </div>
 
     <div id="results"></div>
   </div>
-  <button type="button" onclick="recommendRandom()">🎲 Recommend Me Something</button>
-  <button id="rerollButton" class="hidden" onclick="reroll()">🔄 Give Me Another</button>
 
   <div id="addMode" class="hidden">
     <h2>Add New Location</h2>
@@ -86,145 +90,132 @@
   </div>
 
   <script>
-  let imageMap = {};
-  let currentFiltered = [];
-  let currentPickIndex = -1;
+    let imageMap = {};
+    let currentFiltered = [];
+    let currentPickIndex = -1;
 
-  async function loadImageMap() {
-    try {
-      const res = await fetch('/images/marina_store_images.json');
-      const data = await res.json();
-      imageMap = Object.fromEntries(data.map(i => [i.name.toLowerCase(), i.localPath]));
-    } catch {
-      imageMap = {};
-    }
-  }
-
-  function highlightPick(pickName) {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      if (card.dataset.name === pickName) {
-        card.style.border = '3px solid red';
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        card.style.border = '1px solid #ccc';
+    async function loadImageMap() {
+      try {
+        const res = await fetch('/images/marina_store_images.json');
+        const data = await res.json();
+        imageMap = Object.fromEntries(data.map(i => [i.name.toLowerCase(), i.localPath]));
+      } catch {
+        imageMap = {};
       }
-    });
-  }
-
-  function recommendRandom() {
-    const type = document.getElementById('typeSelect').value;
-    const category = document.getElementById('categorySelect').value;
-    const place = document.getElementById('placeSelect').value;
-
-    if (!type || !category || !place) {
-      alert("Please select a location, type, and category first.");
-      return;
     }
 
-    fetch('/api/locations/' + encodeURIComponent(place))
-      .then(res => res.json())
-      .then(data => {
-        currentFiltered = data.filter(item => item.type === type && item.category === category);
-        if (currentFiltered.length === 0) {
-          alert("No matching options found.");
-          return;
+    function highlightPick(pickName) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (card.dataset.name === pickName) {
+          card.style.border = '3px solid red';
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          card.style.border = '1px solid #ccc';
         }
-        currentPickIndex = Math.floor(Math.random() * currentFiltered.length);
-        highlightPick(currentFiltered[currentPickIndex].name);
-        document.getElementById('rerollButton').classList.remove('hidden');
       });
-  }
-
-  function reroll() {
-    if (currentFiltered.length <= 1) return;
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * currentFiltered.length);
-    } while (newIndex === currentPickIndex);
-
-    currentPickIndex = newIndex;
-    highlightPick(currentFiltered[currentPickIndex].name);
-  }
-
-  function showMode(mode) {
-    document.getElementById('viewMode').classList.toggle('hidden', mode !== 'view');
-    document.getElementById('addMode').classList.toggle('hidden', mode !== 'add');
-  }
-
-  async function populatePlaces() {
-    const res = await fetch('/api/places');
-    const places = await res.json();
-    const placeSelect = document.getElementById('placeSelect');
-    const locationSelect = document.getElementById('location');
-    places.forEach(place => {
-      const option = new Option(place, place);
-      placeSelect.add(option.cloneNode(true));
-      locationSelect.add(option);
-    });
-  }
-
-  async function loadResults() {
-    const place = document.getElementById('placeSelect').value;
-    const type = document.getElementById('typeSelect').value;
-    const category = document.getElementById('categorySelect').value;
-
-    const res = await fetch('/api/locations/' + encodeURIComponent(place));
-    const data = await res.json();
-    const container = document.getElementById('results');
-    container.innerHTML = '';
-    document.getElementById('rerollButton').classList.add('hidden');
-    currentFiltered = [];
-
-    data
-      .filter(item => (type ? item.type === type : true))
-      .filter(item => (category ? item.category === category : true))
-      .forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.dataset.name = item.name;
-        const imgSrc = imageMap[item.name.toLowerCase()] || '';
-        div.innerHTML = imgSrc
-          ? `<img src="${imgSrc}" alt="${item.name}" /><div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`
-          : `<div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`;
-        container.appendChild(div);
-      });
-  }
-
-  document.getElementById('placeSelect').addEventListener('change', loadResults);
-  document.getElementById('typeSelect').addEventListener('change', loadResults);
-  document.getElementById('categorySelect').addEventListener('change', loadResults);
-
-  async function addLocation() {
-    const entry = {
-      name: document.getElementById('name').value,
-      address: document.getElementById('address').value,
-      type: document.getElementById('type').value,
-      category: document.getElementById('category').value,
-      location: document.getElementById('location').value
-    };
-
-    const res = await fetch('/api/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entry)
-    });
-
-    if (res.ok) {
-      alert('Location added!');
-      document.getElementById('placeSelect').value = entry.location;
-      loadResults();
-      showMode('view');
-    } else {
-      alert('Error adding location.');
     }
-  }
 
-  (async () => {
-    await loadImageMap();
-    await populatePlaces();
-    showMode('view');
-  })();
-</script>
+    function recommendRandom() {
+      const type = document.getElementById('typeSelect').value;
+      const category = document.getElementById('categorySelect').value;
+      const place = document.getElementById('placeSelect').value;
+
+      if (!type || !category || !place) {
+        alert("Please select a location, type, and category first.");
+        return;
+      }
+
+      fetch('/api/locations/' + encodeURIComponent(place))
+        .then(res => res.json())
+        .then(data => {
+          currentFiltered = data.filter(item => item.type === type && item.category === category);
+          if (currentFiltered.length === 0) {
+            alert("No matching options found.");
+            return;
+          }
+          currentPickIndex = Math.floor(Math.random() * currentFiltered.length);
+          highlightPick(currentFiltered[currentPickIndex].name);
+        });
+    }
+
+    function showMode(mode) {
+      document.getElementById('viewMode').classList.toggle('hidden', mode !== 'view');
+      document.getElementById('addMode').classList.toggle('hidden', mode !== 'add');
+    }
+
+    async function populatePlaces() {
+      const res = await fetch('/api/places');
+      const places = await res.json();
+      const placeSelect = document.getElementById('placeSelect');
+      const locationSelect = document.getElementById('location');
+      places.forEach(place => {
+        const option = new Option(place, place);
+        placeSelect.add(option.cloneNode(true));
+        locationSelect.add(option);
+      });
+    }
+
+    async function loadResults() {
+      const place = document.getElementById('placeSelect').value;
+      const type = document.getElementById('typeSelect').value;
+      const category = document.getElementById('categorySelect').value;
+
+      const res = await fetch('/api/locations/' + encodeURIComponent(place));
+      const data = await res.json();
+      const container = document.getElementById('results');
+      container.innerHTML = '';
+      currentFiltered = [];
+
+      data
+        .filter(item => (type ? item.type === type : true))
+        .filter(item => (category ? item.category === category : true))
+        .forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.dataset.name = item.name;
+          const imgSrc = imageMap[item.name.toLowerCase()] || '';
+          div.innerHTML = imgSrc
+            ? `<img src="${imgSrc}" alt="${item.name}" /><div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`
+            : `<div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`;
+          container.appendChild(div);
+        });
+    }
+
+    document.getElementById('placeSelect').addEventListener('change', loadResults);
+    document.getElementById('typeSelect').addEventListener('change', loadResults);
+    document.getElementById('categorySelect').addEventListener('change', loadResults);
+
+    async function addLocation() {
+      const entry = {
+        name: document.getElementById('name').value,
+        address: document.getElementById('address').value,
+        type: document.getElementById('type').value,
+        category: document.getElementById('category').value,
+        location: document.getElementById('location').value
+      };
+
+      const res = await fetch('/api/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry)
+      });
+
+      if (res.ok) {
+        alert('Location added!');
+        document.getElementById('placeSelect').value = entry.location;
+        loadResults();
+        showMode('view');
+      } else {
+        alert('Error adding location.');
+      }
+    }
+
+    (async () => {
+      await loadImageMap();
+      await populatePlaces();
+      showMode('view');
+    })();
+  </script>
 </body>
 </html>
