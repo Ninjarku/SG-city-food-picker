@@ -53,6 +53,8 @@
 
     <div id="results"></div>
   </div>
+  <button type="button" onclick="recommendRandom()">🎲 Recommend Me Something</button>
+  <button id="rerollButton" class="hidden" onclick="reroll()">🔄 Give Me Another</button>
 
   <div id="addMode" class="hidden">
     <h2>Add New Location</h2>
@@ -81,123 +83,148 @@
     </select>
     <select id="location"></select>
     <button type="button" onclick="addLocation()">Add</button>
-    <button type="button" onclick="recommendRandom()">🎲 Recommend Me Something</button>
-
   </div>
 
   <script>
-    let imageMap = {};
+  let imageMap = {};
+  let currentFiltered = [];
+  let currentPickIndex = -1;
 
-    async function loadImageMap() {
-      try {
-        const res = await fetch('/images/marina_store_images.json');
-        const data = await res.json();
-        imageMap = Object.fromEntries(data.map(i => [i.name.toLowerCase(), i.localPath]));
-      } catch {
-        imageMap = {};
-      }
-    }
-
-    function recommendRandom() {
-      const type = document.getElementById('typeSelect').value;
-      const category = document.getElementById('categorySelect').value;
-      const place = document.getElementById('placeSelect').value;
-    
-      if (!type || !category || !place) {
-        alert("Please select a location, type, and category first.");
-        return;
-      }
-    
-      fetch('/api/locations/' + encodeURIComponent(place))
-        .then(res => res.json())
-        .then(data => {
-          const filtered = data.filter(item => item.type === type && item.category === category);
-          if (filtered.length === 0) {
-            alert("No matching options found.");
-            return;
-          }
-    
-          const pick = filtered[Math.floor(Math.random() * filtered.length)];
-          alert(`🎯 You should try: ${pick.name}\n📍 ${pick.address}`);
-        });
-    }
-
-    
-    function showMode(mode) {
-      document.getElementById('viewMode').classList.toggle('hidden', mode !== 'view');
-      document.getElementById('addMode').classList.toggle('hidden', mode !== 'add');
-    }
-
-    async function populatePlaces() {
-      const res = await fetch('/api/places');
-      const places = await res.json();
-      const placeSelect = document.getElementById('placeSelect');
-      const locationSelect = document.getElementById('location');
-      places.forEach(place => {
-        const option = new Option(place, place);
-        placeSelect.add(option.cloneNode(true));
-        locationSelect.add(option);
-      });
-    }
-
-    async function loadResults() {
-      const place = document.getElementById('placeSelect').value;
-      const type = document.getElementById('typeSelect').value;
-      const category = document.getElementById('categorySelect').value;
-
-      const res = await fetch('/api/locations/' + encodeURIComponent(place));
+  async function loadImageMap() {
+    try {
+      const res = await fetch('/images/marina_store_images.json');
       const data = await res.json();
-      const container = document.getElementById('results');
-      container.innerHTML = '';
-
-      data
-        .filter(item => (type ? item.type === type : true))
-        .filter(item => (category ? item.category === category : true))
-        .forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'card';
-          const imgSrc = imageMap[item.name.toLowerCase()] || '';
-          div.innerHTML = imgSrc
-            ? `<img src="${imgSrc}" alt="${item.name}" /><div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`
-            : `<div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`;
-          container.appendChild(div);
-        });
+      imageMap = Object.fromEntries(data.map(i => [i.name.toLowerCase(), i.localPath]));
+    } catch {
+      imageMap = {};
     }
+  }
 
-    document.getElementById('placeSelect').addEventListener('change', loadResults);
-    document.getElementById('typeSelect').addEventListener('change', loadResults);
-    document.getElementById('categorySelect').addEventListener('change', loadResults);
-
-    async function addLocation() {
-      const entry = {
-        name: document.getElementById('name').value,
-        address: document.getElementById('address').value,
-        type: document.getElementById('type').value,
-        category: document.getElementById('category').value,
-        location: document.getElementById('location').value
-      };
-
-      const res = await fetch('/api/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(entry)
-      });
-
-      if (res.ok) {
-        alert('Location added!');
-        document.getElementById('placeSelect').value = entry.location;
-        loadResults();
-        showMode('view');
+  function highlightPick(pickName) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (card.dataset.name === pickName) {
+        card.style.border = '3px solid red';
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
-        alert('Error adding location.');
+        card.style.border = '1px solid #ccc';
       }
+    });
+  }
+
+  function recommendRandom() {
+    const type = document.getElementById('typeSelect').value;
+    const category = document.getElementById('categorySelect').value;
+    const place = document.getElementById('placeSelect').value;
+
+    if (!type || !category || !place) {
+      alert("Please select a location, type, and category first.");
+      return;
     }
 
-    (async () => {
-      await loadImageMap();
-      await populatePlaces();
+    fetch('/api/locations/' + encodeURIComponent(place))
+      .then(res => res.json())
+      .then(data => {
+        currentFiltered = data.filter(item => item.type === type && item.category === category);
+        if (currentFiltered.length === 0) {
+          alert("No matching options found.");
+          return;
+        }
+        currentPickIndex = Math.floor(Math.random() * currentFiltered.length);
+        highlightPick(currentFiltered[currentPickIndex].name);
+        document.getElementById('rerollButton').classList.remove('hidden');
+      });
+  }
+
+  function reroll() {
+    if (currentFiltered.length <= 1) return;
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * currentFiltered.length);
+    } while (newIndex === currentPickIndex);
+
+    currentPickIndex = newIndex;
+    highlightPick(currentFiltered[currentPickIndex].name);
+  }
+
+  function showMode(mode) {
+    document.getElementById('viewMode').classList.toggle('hidden', mode !== 'view');
+    document.getElementById('addMode').classList.toggle('hidden', mode !== 'add');
+  }
+
+  async function populatePlaces() {
+    const res = await fetch('/api/places');
+    const places = await res.json();
+    const placeSelect = document.getElementById('placeSelect');
+    const locationSelect = document.getElementById('location');
+    places.forEach(place => {
+      const option = new Option(place, place);
+      placeSelect.add(option.cloneNode(true));
+      locationSelect.add(option);
+    });
+  }
+
+  async function loadResults() {
+    const place = document.getElementById('placeSelect').value;
+    const type = document.getElementById('typeSelect').value;
+    const category = document.getElementById('categorySelect').value;
+
+    const res = await fetch('/api/locations/' + encodeURIComponent(place));
+    const data = await res.json();
+    const container = document.getElementById('results');
+    container.innerHTML = '';
+    document.getElementById('rerollButton').classList.add('hidden');
+    currentFiltered = [];
+
+    data
+      .filter(item => (type ? item.type === type : true))
+      .filter(item => (category ? item.category === category : true))
+      .forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.dataset.name = item.name;
+        const imgSrc = imageMap[item.name.toLowerCase()] || '';
+        div.innerHTML = imgSrc
+          ? `<img src="${imgSrc}" alt="${item.name}" /><div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`
+          : `<div><strong>${item.name}</strong><br>${item.address}<br>${item.type} - ${item.category}</div>`;
+        container.appendChild(div);
+      });
+  }
+
+  document.getElementById('placeSelect').addEventListener('change', loadResults);
+  document.getElementById('typeSelect').addEventListener('change', loadResults);
+  document.getElementById('categorySelect').addEventListener('change', loadResults);
+
+  async function addLocation() {
+    const entry = {
+      name: document.getElementById('name').value,
+      address: document.getElementById('address').value,
+      type: document.getElementById('type').value,
+      category: document.getElementById('category').value,
+      location: document.getElementById('location').value
+    };
+
+    const res = await fetch('/api/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry)
+    });
+
+    if (res.ok) {
+      alert('Location added!');
+      document.getElementById('placeSelect').value = entry.location;
+      loadResults();
       showMode('view');
-    })();
-  </script>
+    } else {
+      alert('Error adding location.');
+    }
+  }
+
+  (async () => {
+    await loadImageMap();
+    await populatePlaces();
+    showMode('view');
+  })();
+</script>
 </body>
 </html>
